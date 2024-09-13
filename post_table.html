@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+
+<head></head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Editor</title>
+	<style>
+		* {
+			margin: 0em;
+			box-sizing: border-box;
+		}
+		body {
+			height: 100vh;
+			display: flex;
+			flex-direction: column;
+			align-items: stretch;
+			& >* {
+				padding: 1em;
+				width: 100%;
+			}
+			& > section {
+				flex-grow: 1;
+				overflow: auto;
+				/* Note: The :blank selector is considered at risk, as the CSSWG keeps changing it. */
+				&:empty {
+					background-image: url("/type-here");
+					background-size: contain;
+					background-repeat: no-repeat;
+					background-position: top;
+				}
+			}
+		}
+		nav {
+		    user-select: none;
+			background-color: aqua;
+			position: sticky;
+			display: flex;
+			flex-direction: row;
+			flex-wrap: wrap;
+			align-items: stretch;
+			& > h2 {
+				flex-grow: 1;
+				font-size: 1.5em;
+			}
+			& > button {
+				system: none;
+				border: none;
+				font-size: 1em;
+			}
+		}
+	</style>
+</head>
+
+<body>
+	<nav><h2>Table Editor</h2><button onclick="window.location.href = 'parsed?table='+encodeURIComponent(document.getElementById('table').innerHTML)">Generate</button></nav>
+	<section id="table" contenteditable="true"></section>
+	<script>
+		window.onload = () => document.getElementById("table").focus()
+	</script>
+</body>
+
+</html>
